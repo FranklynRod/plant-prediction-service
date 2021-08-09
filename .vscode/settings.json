@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/e4b318d9-e8e4-4f84-a4d9-d0af1180e3cf/resourceGroups/peachpitpie2020_rg_Linux_centralus/providers/Microsoft.Web/sites/plant-prediction-service",
+    "appService.deploySubpath": "."
+}
