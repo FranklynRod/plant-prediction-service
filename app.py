@@ -33,6 +33,6 @@ def _process_base64(json_data):
 
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=80, debug=False)
+    app.run(host='127.0.0.1', port=5000, debug=False)
 # http = 80
 # https = 443, but done w/app service usually.  
