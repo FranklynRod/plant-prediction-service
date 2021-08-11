@@ -20,12 +20,7 @@ TF_MODEL = TFModel(ASSETS_PATH)
 @app.route('/predict', methods=["POST"])
 def predict_image():
     req = request.get_json(force=True)
-    try:
-        image = _process_base64(req)
-    except:
-        return make_response({
-            "error": True,
-            "message": f"Invalid base64 string in request body."}, 400)
+    image = _process_base64(req)
     return TF_MODEL.predict(image)
 
 def _process_base64(json_data):
