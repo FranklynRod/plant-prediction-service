@@ -7,7 +7,7 @@ import re
 import base64
 
 from PIL import Image
-from flask import Flask, request
+from flask import Flask, request, make_response
 
 from tf_model_helper import TFModel
 
@@ -17,11 +17,15 @@ app = Flask(__name__)
 ASSETS_PATH = os.path.join(".", "./model")
 TF_MODEL = TFModel(ASSETS_PATH)
 
-
 @app.route('/predict', methods=["POST"])
 def predict_image():
     req = request.get_json(force=True)
-    image = _process_base64(req)
+    try:
+        image = _process_base64(req)
+    except:
+        return make_response({
+            "error": True,
+            "message": f"Invalid base64 string in request body."}, 400)
     return TF_MODEL.predict(image)
 
 def _process_base64(json_data):
