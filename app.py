@@ -7,7 +7,7 @@ import re
 import base64
 
 from PIL import Image
-from flask import Flask, request, make_response
+from flask import Flask, request
 
 from tf_model_helper import TFModel
 
