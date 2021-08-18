@@ -1,14 +1,19 @@
-<div style="text-align:center"><img src="https://github.com/lobe/flask-server/blob/main/assets/header.jpg" /></div><br>
 
-[Lobe](http://lobe.ai/) is a free, easy to use app that has everything you need to bring your machine learning ideas to life. This Flask starter project creates a REST API to get predictions from a TensorFlow model on your projects or apps. To start using it, follow the instructions below:
+# plant-prediction-service
 
-## Get Started
+plant-prediction-service is Flask RESTful API that retrieves predictions from a TensorFlow model built with [Lobe](lobe.ai). It is utilized by [houseplant-app](https://github.com/Sarajvega/houseplant-app).
 
-1. Clone or download the project on your computer to get started. You'll need Python 3.6 or 3.7 to run this starter project as well.
+[Deployed Version](https://plant-prediction-service.azurewebsites.net/)
 
-2. Export a TensorFlow model from Lobe
+## How it works
+A base64 image is sent with a `POST` request to the app, which returns an array of predictions and confidences. The server code that defines endpoints is in `app.py`. 
 
-3. Move the `saved_model.pb` file, `variables` folder, and `signature.json` file exported from Lobe to the `/model` folder
+## Technologies
+- Flask
+
+## Usage
+
+Clone or download the project on your computer to get started. You'll need Python 3.6 or 3.7 to run this starter project as well.
 
 #### Windows
 
@@ -48,22 +53,11 @@ python app.py
 export FLASK_APP=app.py
 flask run
 ```
-#### Deploy to Azure App Service
-
-1. Have version 2.0.80 or higher of [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) installed.  
-   `az --version`
-2. Login by running this command and following prompts   
-`az login`
-3. Deploy to the cloud!  
-`az webapp up --sku B1 --name <your unique app name>`
-
-Azure documentation is available if you run into issues. 
-This [quick start](https://docs.microsoft.com/en-us/azure/app-service/quickstart-python?toc=%2Fpython%2Fazure%2FTOC.json&tabs=bash&pivots=python-framework-flask) is a good starting point.
-
 
 ### Sending a request
 
-1. Perform a post request to the target url/predict with your base64 image. Refer to `testing.py` for getting started sending requests to the server.
+1. Perform a post request to the target `http://localhost:5000/predict` with your base64 image. 
+   
 ```JSON
 {
   "image": "<base64 image>"
@@ -84,18 +78,9 @@ This [quick start](https://docs.microsoft.com/en-us/azure/app-service/quickstart
 }
 ```
 
-## Additional Information
-
-The Flask starter project is optimized for models exported from Lobe but could be used with any TensorFlow models with some small updates.
-
-Lobe has an endpoint built in called Lobe Connect that can be used while running the app and this starter project works the same way. If your app works with Lobe Connect, it will work with this starter project just by updating the URL.
-
-We are using TensorFlow 2.5.0 to run the tf_example.py file. If you see any GPU errors or want to run the script on GPU please refer to https://www.tensorflow.org/install/gpu
-
-The code takes in a `base64` image and returns an array of predictions and confidences. The server code that defines endpoints is in `app.py`. And the code for using your model including image pre-processing and output formatting for a prediction is in `tf_model_helper.py`. For reference, the Swagger definition file lives in `swagger/`.
-
 ## Contributing
+For changes, please open an issue first to discuss what you would like to change.
 
-GitHub Issues are for reporting bugs, discussing features and general feedback on the Flask starter project. Be sure to check our documentation, FAQ and past issues before opening any new ones.
+## Credits
+Lobe's [flask-server](https://github.com/lobe/flask-server) starter project.
 
-To share your project, get feedback on it, and learn more about Lobe, please visit our community on [Reddit](https://www.reddit.com/r/Lobe/). We look forward to seeing the amazing projects that can be built, when machine learning is made accessible to you.
